@@ -45,19 +45,19 @@ router.delete("/delete/:id", async (req,res) => {
 
 })
 
-router.patch("/update/:id", async (req,res) => {
+// router.patch("/update/:id", async (req,res) => {
 
-    const {id} = req.params
-    const {task} = req.body
+//     const {id} = req.params
+//     const {task} = req.body
 
-    try {
-        const updateTask = await Todo.findByIdAndUpdate(id)
+//     try {
+//         const updateTask = await Todo.findByIdAndUpdate(id)
         
-    } catch (error) {
-        res.send(`Delete Error: ${error.message}`)
-        console.log("Delete Error:",error.message);
-    }
+//     } catch (error) {
+//         res.send(`Delete Error: ${error.message}`)
+//         console.log("Delete Error:",error.message);
+//     }
 
-})
+// })
 
 export default router
