@@ -6,9 +6,17 @@ const Tasks = () => {
   const [data, setData] = useState([])
 
   const getTasks = async () => {
-    const response = await axios.get("http://localhost:3669")
-    console.log(response);
-    setData(response?.data?.task)
+    
+    try {
+      
+      const response = await axios.get("http://localhost:3669")
+      setData(response?.data || [])
+      console.log(response.data);
+
+    } catch (error) {
+      console.error(error,"bado error");
+      setData(error)
+    }
   }
 
   useEffect(()=> {
@@ -16,11 +24,11 @@ const Tasks = () => {
   },[])
 
   return (
-    <>
+    <div className='w-1/3'>
     {data.map(item => (
-      <div key={item._id} className='border border-gray-300 bg-gray-100 rounded-md shadow-xl w-1/3 mx-auto mt-4 text-2xl px-3 py-2 '>{item.task}</div>
+        <div key={item._id} className='border border-gray-300 bg-gray-100 rounded-md shadow-lg  mx-auto mt-4 text-xl px-3 py-2 flex justify-between items-center'><input type="checkbox" name="" id="" /> {item.task} <img src="bin.png" className='w-5 h-5 cursor-pointer' alt="" /></div>
     ))}
-    </>
+    </div>
   )
 }
 
