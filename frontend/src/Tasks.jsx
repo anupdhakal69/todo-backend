@@ -24,14 +24,30 @@ const Tasks = () => {
 
   const handleDeleteTask = async (id) => {
 
-    try {
-      const response = await axios.delete(`http://localhost:3669/delete/${id}`)
-      setData(data.filter(item => item._id !== id));
-      
-    } catch (error) {
-      console.error("delete error:", error.message);
+    const isConfirmed = window.confirm("Are you sure you want to delete this task?");
+
+    if(isConfirmed){
+      try {
+        const response = await axios.delete(`http://localhost:3669/delete/${id}`)
+        setData(data.filter(item => item._id !== id));
+        
+      } catch (error) {
+        console.error("Delete error:", error.message);
+      }
     }
   } 
+
+  const handleAddTask = async (e) => {
+
+    try {
+      const response = axios.post(`http://localhost:3669/add`)
+      
+    } catch (error) {
+      console.error("Add error:", error.message);
+      
+    }
+  }
+
 
   return (
     <div className='w-1/3'>
